@@ -18,7 +18,7 @@ app.post("/register", async (req, res) => {
   if (result) {
     Jwt.sign({ result }, jwtkey, { expiresIn: "2h" }, (err, token) => {
       if (err) {
-        res.send({ respoance: "Something went wrong" });
+        res.send({ response: "Something went wrong" });
       } else {
         res.send({ result, auth: token });
       }
@@ -31,13 +31,13 @@ app.post("/login", async (req, res) => {
   if (user) {
     Jwt.sign({ user }, jwtkey, { expiresIn: "2h" }, (err, token) => {
       if (err) {
-        res.send({ respoance: "Something went wrong" });
+        res.send({ response: "Something went wrong" });
       } else {
         res.send({ user, auth: token });
       }
     });
   } else {
-    res.send({ respoance: "no data found" });
+    res.send({ response: "no data found" });
   }
 });
 
@@ -96,13 +96,13 @@ function verifyToken(req, res, next) {
     token = token.split(" ")[1];
     Jwt.verify(token, jwtkey, (err, valid) => {
       if (err) {
-        res.status(401).send({ respoance: "Provide Valid token" });
+        res.status(401).send({ response: "Provide Valid token" });
       } else {
         next();
       }
     });
   } else {
-    res.status(403).send({ respoance: "Token not found" });
+    res.status(403).send({ response: "Token not found" });
   }
 }
 
