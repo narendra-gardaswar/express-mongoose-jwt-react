@@ -105,7 +105,6 @@ function verifyToken(req, res, next) {
     res.status(403).send({ response: "Token not found" });
   }
 }
-
 app.listen(3001, () => {
   console.log("Listening to port 3001");
 });
